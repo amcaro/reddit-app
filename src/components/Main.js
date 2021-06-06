@@ -1,10 +1,10 @@
 import React from 'react';
-import Posts from './Posts';
+import PostsList from './PostsList';
 
 export default function Main() {
     return (
         <main>
-            <Posts />
+            <PostsList />
         </main>
     );
 }

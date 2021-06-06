@@ -1,11 +1,8 @@
 import React from 'react';
-const data = require('../data/reddit.json');
 
-const reddit = JSON.parse(JSON.stringify(data));
+export default function Post({article}) {
 
-export default function PostContainer() {
-    const article = reddit.data.children[1].data
-    const hasImg = true ? true : false;
+    const hasImg = article.thumbnail !== 'self' && article.thumbnail !== 'default' ? true : false;
 
     return (
         <div>
