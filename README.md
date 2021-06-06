@@ -1,4 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Technologies used
+    -React
+    -Redux
+    -Node.js
+
+# Features
+    -View Reddit Posts through API
+    -Search Posts 
+    -View Posts Comments
+
+# Future work
+    -Post comments on site
+    -Up/Down Vote
+    -Retrieve more Subreddits
 
 ## Available Scripts
 
