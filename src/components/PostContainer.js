@@ -1,11 +1,25 @@
 import React from 'react';
 const data = require('../data/reddit.json');
 
-const reddit = JSON.parse(data);
+const reddit = JSON.parse(JSON.stringify(data));
 
 export default function PostContainer() {
+    const article = reddit.data.children[1].data
+    const hasImg = true ? true : false;
 
     return (
-        <h1>{reddit.data.children[0].subreddit}</h1>
+        <div>
+            <h3>{article.title}</h3>
+            {hasImg &&
+                <img 
+                    src={article.thumbnail} 
+                    alt="thumbnail"
+                />
+            }
+            <div>
+                <div>Ups: {article.ups}</div>
+                <div>Downs: {article.downs}</div>
+            </div>
+        </div>
     );
 }
