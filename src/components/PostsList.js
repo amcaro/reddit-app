@@ -6,7 +6,7 @@ import { addPosts, selectPosts } from '../features/posts/postsSlice';
 const url = 'https://www.reddit.com/r/popular.json';
 
 
-export default function Posts() {
+export default function PostsList() {
     const [articles, setArticles ] = useState([]);
     const dispatch = useDispatch();
     const posts = useSelector(selectPosts);
