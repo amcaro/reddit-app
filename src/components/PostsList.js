@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Comments from '../features/posts/Comments';
+import Comments from './Comments';
 import { addComments, selectComments } from '../features/posts/commentsSlice';
 import Post from '../features/posts/Post';
 import { addPosts, selectPosts } from '../features/posts/postsSlice';
