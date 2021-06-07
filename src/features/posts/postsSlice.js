@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {articles: []};
+const initialState = {articles: [], comments: []};
 
 export const postsSlice = createSlice({ 
     name: 'posts',

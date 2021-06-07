@@ -6,6 +6,7 @@ export default function Post({article}) {
 
     return (
         <div>
+            <h1>{article.subreddit}</h1>
             <h3>{article.title}</h3>
             {hasImg &&
                 <img 
@@ -15,7 +16,6 @@ export default function Post({article}) {
             }
             <div>
                 <div>Ups: {article.ups}</div>
-                <div>Downs: {article.downs}</div>
             </div>
         </div>
     );
