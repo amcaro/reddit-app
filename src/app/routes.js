@@ -1,7 +1,7 @@
 const ROUTES = {
     popular: '/popular',
-    gaming:  '/gaming/',
-    trashy:  '/trashy/',
+    gaming:  '/gaming',
+    trashy:  '/trashy',
 };
   
 export default ROUTES;

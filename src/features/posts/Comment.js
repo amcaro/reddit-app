@@ -1,7 +1,17 @@
 import React from 'react';
 
 export default function Comment({comment}) {
-    return <div dangerouslySetInnerHTML={{ __html: htmlDecode(comment.data.body_html) }} />
+    if(comment.kind === 't1') {
+        const styles = {
+            border: '1px solid rgba(0, 0, 0, 0.05)', 
+       };
+        return <div 
+                    style={styles} 
+                    dangerouslySetInnerHTML={{ __html: htmlDecode(comment.data.body_html) }} 
+                />
+    } 
+
+    return null;
 }
 
 function htmlDecode(input){
