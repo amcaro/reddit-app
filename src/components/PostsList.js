@@ -4,19 +4,34 @@ import Comments from './Comments';
 import { addComments, selectComments } from '../features/posts/commentsSlice';
 import Post from '../features/posts/Post';
 import { addPosts, selectPosts } from '../features/posts/postsSlice';
+import URLS from '../api/urls';
+import ROUTES from '../app/routes';
 
-const url = 'https://www.reddit.com/r/popular.json';
-const url2 = 'https://www.reddit.com/r/ProgrammerHumor/comments/nu3d5t/i_thought_same_somehow.json';
-
-export default function PostsList() {
+export default function PostsList({match}) {
     const dispatch = useDispatch();
     const articles = useSelector(selectPosts);
     const comments = useSelector(selectComments);
     const [ posts, setPosts ] = useState([]);
 
+    const url2 = 'https://www.reddit.com/r/ProgrammerHumor/comments/nu3d5t/i_thought_same_somehow.json';
+
     useEffect(() => {
+        const url = configureURL();
         fetchArticles(url);
     }, [posts]);
+
+    const configureURL = () => {
+        switch (match.path) {
+            case ROUTES.popular:
+                return URLS.popular;
+            case ROUTES.gaming:
+                return URLS.gaming;
+            case ROUTES.trashy:
+                return URLS.trashy;
+            default:
+                return URLS.popular;
+        }
+    }
 
     const fetchArticles = async (url) => {
         const data = await fetch(url);
