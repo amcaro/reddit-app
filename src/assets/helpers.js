@@ -1,0 +1,16 @@
+export function htmlDecode(input){
+    var e = document.createElement('div');
+    e.innerHTML = input;
+    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+  }
+
+export  function isHTML(str) {
+    var a = document.createElement('div');
+    a.innerHTML = str;
+  
+    for (var c = a.childNodes, i = c.length; i--; ) {
+      if (c[i].nodeType === 1) return true; 
+    }
+  
+    return false;
+  }

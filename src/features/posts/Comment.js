@@ -1,4 +1,5 @@
 import React from 'react';
+import { htmlDecode } from '../../assets/helpers';
 
 export default function Comment({comment}) {
     if(comment.kind === 't1') {
@@ -13,9 +14,3 @@ export default function Comment({comment}) {
 
     return null;
 }
-
-function htmlDecode(input){
-    var e = document.createElement('div');
-    e.innerHTML = input;
-    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-  }
