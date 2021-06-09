@@ -31,7 +31,7 @@ const commentsSlice =  createSlice({
             
             const articleId = action.payload[0].data.children[0].data.id;
             const comments = action.payload[1].data.children;
-            const commentCount = action.payload[1].data.children.length;
+            const commentCount = comments.length;
             state.comments[articleId] = {comments: comments, count: commentCount};
              
         })
