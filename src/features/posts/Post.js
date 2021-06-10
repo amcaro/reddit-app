@@ -6,7 +6,7 @@ import Comments from '../../components/Comments';
 export default function Post({article}) {
     const hasImg = article.preview !== undefined ? true : false;
 
-    const convertMD = new showdown.Converter();
+    const convert = new showdown.Converter();
 
     return (
         <div key={article.id}>
@@ -30,7 +30,7 @@ export default function Post({article}) {
             }
             {   isHTML(article.selftext)?
                     <p dangerouslySetInnerHTML={{__html: article.selftext}} /> :
-                    <div dangerouslySetInnerHTML={{__html: convertMD.makeHtml(article.selftext)}} />
+                    <div dangerouslySetInnerHTML={{__html: convert.makeHtml(article.selftext)}} />
             }
             <div>
                 <div>Ups: {article.ups}</div>
