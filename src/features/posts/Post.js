@@ -4,38 +4,40 @@ import { isHTML } from '../../assets/helpers';
 import Comments from '../../components/Comments';
 
 export default function Post({article}) {
-    const thumbnail = article.thumbnail;
-    const showImg = thumbnail !== 'self' && 
-                    thumbnail !== 'default' &&
-                    thumbnail !== 'nsfw' ? true : false;
-    
+    const hasImg = article.preview !== undefined ? true : false;
+
     const convertMD = new showdown.Converter();
 
     return (
         <div key={article.id}>
-            
-            {isHTML(article.subreddit)?
-                    <h2 dangerouslySetInnerHTML={{__html: article.subreddit}} /> :
-                    <h2>{article.subreddit}</h2>
+            <div className="Article-title">
+            {   isHTML(article.subreddit)?
+                    <h1 dangerouslySetInnerHTML={{__html: article.subreddit}} /> :
+                    <h1>{article.subreddit}</h1>
             }
-            {isHTML(article.title)?
-                <h3 dangerouslySetInnerHTML={{__html: article.title}} /> :
-                <h3>{article.title}</h3>
+            {   isHTML(article.title)?
+                    <h2 dangerouslySetInnerHTML={{__html: article.title}} /> :
+                    <h2>{article.title}</h2>
             }
-            {showImg &&
-                <img 
-                    src={article.thumbnail} 
-                    alt="thumbnail"
-                />
+            </div>
+            {hasImg &&  
+                <div className="article-img">
+                    <img 
+                        src={article.preview.images[0].source.url.replace('amp;s', 's').replace('&amp;', '&')} 
+                        alt="article preview"
+                    />
+                </div>   
             }
-            {isHTML(article.selftext)?
-                <p dangerouslySetInnerHTML={{__html: article.selftext}} /> :
-                <div dangerouslySetInnerHTML={{__html: convertMD.makeHtml(article.selftext)}} />
+            {   isHTML(article.selftext)?
+                    <p dangerouslySetInnerHTML={{__html: article.selftext}} /> :
+                    <div dangerouslySetInnerHTML={{__html: convertMD.makeHtml(article.selftext)}} />
             }
             <div>
                 <div>Ups: {article.ups}</div>
             </div>
-            <Comments article={article}/>
+            <div>
+                <Comments article={article}/>
+            </div>
         </div>
     );
 }

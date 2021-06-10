@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import URLS from '../api/urls';
 import Comment from '../features/posts/Comment';
@@ -10,6 +10,7 @@ export default function Comments({article}) {
     const comments = useSelector(selectComments);
     const loadingComments = useSelector(isLoadingComments);
     const loadingCommentsFailed = useSelector(commentsFailed);
+    const [visible, setVisible] = useState(false);
 
     useEffect(() => {
         let commentsURL = article.permalink.slice(0, -1);
@@ -18,20 +19,26 @@ export default function Comments({article}) {
         dispatch(loadComments(commentsURL));
     }, [dispatch, article]);
 
+    function onClickHandler() {
+        setVisible(!visible);
+   }
+
     if (loadingComments || !comments[article.id]) {
         return <div>Loading</div>;
-      } else if (loadingCommentsFailed) {
+    } else if (loadingCommentsFailed ) {
         return null;
-      }
+    }
     
     return (
         <>
-            {<p>Comment Count: {comments[article.id].count}</p>}
-            {comments[article.id].comments.map(comment => 
-                <div key={comment.data.id} >
-                    <Comment comment={comment} />
-                </div>
-            )}
+            {<button onClick={onClickHandler}>Comment Count: {comments[article.id].count}</button>}
+            <div className={visible? 'visible' : 'hidden'}  >
+                {comments[article.id].comments.map(comment => 
+                    <div key={comment.data.id} >
+                        <Comment comment={comment} />
+                    </div>
+                )}
+            </div>
         </>
     );
 }
