@@ -1,5 +1,19 @@
-nav a {
+.nav {
+    display: block !important;
+    align-items: center;
+    justify-content: center;
+}
+.nav-itme {
     display: block;
     margin-bottom: 10px;
     text-decoration: none;
+}
+.search-bar div:nth-child(1){
+    display: flex;
+    justify-content: flex-end;
+}
+.search-bar div:nth-child(2){
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
 }

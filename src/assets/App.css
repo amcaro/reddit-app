@@ -4,6 +4,7 @@
 
 .App-logo {
   height: 40vmin;
+  max-height: 25vh;
   pointer-events: none;
 }
 
@@ -20,6 +21,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  margin-bottom: 5vh;
 }
 
 .App-link {
@@ -38,7 +40,7 @@
   }
 }
 
-.highlight {
+#mark {
   background-color: #FFFF00
 }
 .article-title {
@@ -50,6 +52,9 @@
 .hidden {
   display: none;
 }
-button {
-  cursor: pointer;
+
+@media (min-width: 992px) {
+  .text-md-justify {
+      text-align: justify !important;
+  }
 }

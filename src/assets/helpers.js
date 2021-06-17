@@ -1,4 +1,3 @@
-import showdown from 'showdown';
 import Post from '../features/posts/Post';
 
 export function htmlDecode(input){
@@ -42,43 +41,34 @@ export  function isHTML(str) {
 }
 
 export function createPostJSX(post, searchTerm, changeTerm) {
-    let postData;
+   let title = post.data.title;
+   let subR = post.data.subreddit;
+   let text = post.data.selftext_html;
 
     switch (changeTerm) {
         case 'Title':
-            const htmlTitle = highlightSearchText(post.data.title, searchTerm);
-            postData = {...post.data, title: htmlTitle};
+            title = highlightSearchText(post.data.title, searchTerm);
             break;
         
         case 'Subreddit':
-            const htmlSubreddit = highlightSearchText(post.data.subreddit, searchTerm);
-            postData = {...post.data, subreddit: htmlSubreddit};
+            subR = highlightSearchText(post.data.subreddit, searchTerm);
             break;
         
         case 'Text':
-            const convertMD = new showdown.Converter();
-            let htmlText = convertMD.makeHtml(post.data.selftext);
-            htmlText = highlightSearchText(htmlText, searchTerm);
-            postData = {...post.data, selftext: htmlText};
+            text = highlightSearchText(post.data.selftext_html, searchTerm);
             break;
     
         default:
-            postData = post.data;
             break;
     }
     
     return (
-        <div key={postData.id}>
-            <Post article={postData}/>
+        <div key={post.data.id}>
+            <Post subR={subR} title={title} text={text} article={post.data}/>
         </div>
     );
 }
 
 export function highlightSearchText(text, searchTerm) {
-    const divStart = '<span class="highlight">';
-    const divEnd = '</span>'
-    const search = new RegExp(searchTerm,'i')
-    const htmlText = '<div>' + text.replace(search, divStart + '$&' + divEnd) + '</div>';
-    
-    return htmlText
+  return text.replace(new RegExp(searchTerm,'i'), '<span id="mark">$&</span>' );
 }

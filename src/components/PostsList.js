@@ -3,6 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filterBySearch } from '../assets/helpers';
 import { isLoadingPosts, loadPosts, selectPosts } from '../features/posts/postsSlice';
 import { selectSearchTerm, setSearchTerm } from '../features/posts/searchTermSlice';
+import Spinner from 'react-bootstrap/Spinner';
+import Col from 'react-bootstrap/Col';
+
+const layout = {
+    PostList: {
+        md: { span: 9, order: 'first' }
+    }
+}
 
 export default function PostsList({match}) {
     const dispatch = useDispatch();
@@ -20,12 +28,15 @@ export default function PostsList({match}) {
     }, [dispatch, match]);
 
     if(postsLoading) {
-        return <h2>Loading...</h2>
+        return <Col md={layout.PostList.md}>
+                    <h2>Loading...</h2> 
+                    <Spinner animation="border" variant="secondary" />
+                </Col>
     }
 
     return (
-            <>
-            {posts.map(post => filterBySearch(post, searchTerm))}
-            </>
+            <Col md={layout.PostList.md}>
+                {posts.map(post => filterBySearch(post, searchTerm))}
+            </Col>
         );
 }

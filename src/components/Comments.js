@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import URLS from '../api/urls';
 import Comment from '../features/posts/Comment';
 import { commentsFailed, isLoadingComments, loadComments, selectComments } from '../features/posts/commentsSlice';
-
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card'
+import ListGroup from 'react-bootstrap/ListGroup';
+import Spinner from 'react-bootstrap/Spinner';
 
 export default function Comments({article}) {
     const dispatch = useDispatch();
@@ -24,21 +27,30 @@ export default function Comments({article}) {
    }
 
     if (loadingComments || !comments[article.id]) {
-        return <div>Loading</div>;
+        return  <>
+                    <h6>Comments...</h6> 
+                    <Spinner animation="border" variant="secondary" size="sm"/>
+                </>;
     } else if (loadingCommentsFailed ) {
         return null;
     }
     
     return (
         <>
-            {<button onClick={onClickHandler}>Comment Count: {comments[article.id].count}</button>}
-            <div className={visible? 'visible' : 'hidden'}  >
-                {comments[article.id].comments.map(comment => 
-                    <div key={comment.data.id} >
-                        <Comment comment={comment} />
-                    </div>
-                )}
-            </div>
+            <Card.Text>
+                <Button onClick={onClickHandler} variant="primary">
+                    <div>Comments [{comments[article.id].count}]</div>
+                </Button>
+            </Card.Text>
+            {visible && 
+                <ListGroup className="text-md-justify">
+                    {comments[article.id].comments.map(comment => 
+                            <ListGroup.Item key={comment.data.id} >
+                                <Comment comment={comment} />
+                            </ListGroup.Item>
+                    )}
+                </ListGroup>
+            }
         </>
     );
 }
