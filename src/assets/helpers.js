@@ -1,4 +1,4 @@
-import Post from '../features/posts/Post';
+import Post from '../features/Post/Post';
 
 export function htmlDecode(input){
     var e = document.createElement('div');

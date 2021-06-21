@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import URLS from '../api/urls';
-import Comment from '../features/posts/Comment';
-import { commentsFailed, isLoadingComments, loadComments, selectComments } from '../features/posts/commentsSlice';
+import Comment from '../features/Comment/Comment';
+import { commentsFailed, isLoadingComments, loadComments, selectComments } from '../features/Comment/commentsSlice';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card'
 import ListGroup from 'react-bootstrap/ListGroup';

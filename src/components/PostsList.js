@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { filterBySearch } from '../assets/helpers';
-import { isLoadingPosts, loadPosts, selectPosts } from '../features/posts/postsSlice';
-import { selectSearchTerm, setSearchTerm } from '../features/posts/searchTermSlice';
+import { isLoadingPosts, loadPosts, selectPosts } from '../features/Post/postsSlice';
+import { selectSearchTerm, setSearchTerm } from '../features/Search/searchTermSlice';
 import Spinner from 'react-bootstrap/Spinner';
 import Col from 'react-bootstrap/Col';
 

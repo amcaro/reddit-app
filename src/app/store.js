@@ -1,7 +1,7 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
-import commentsReducer from '../features/posts/commentsSlice';
-import postsReducer from '../features/posts/postsSlice';
-import searchTermReducer from '../features/posts/searchTermSlice';
+import commentsReducer from '../features/Comment/commentsSlice';
+import postsReducer from '../features/Post/postsSlice';
+import searchTermReducer from '../features/Search/searchTermSlice';
 
 const middleware = getDefaultMiddleware({
   serializableCheck: false

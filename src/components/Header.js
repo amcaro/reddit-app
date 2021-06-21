@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from '../assets/logo.svg';
 import '../assets/App.css';
-import SearchTerm from '../features/posts/SearchTerm';
+import SearchTerm from '../features/Search/SearchTerm';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row'
 
